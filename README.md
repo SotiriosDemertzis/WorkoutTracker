@@ -20,26 +20,23 @@ Through the development of this project, I gained hands-on experience with sever
 
 7. **API Integration**: I integrated with an external exercise database API to fetch exercise data, including search functionality and filtering options.
 
-8. **Drag and Drop**: I implemented drag-and-drop functionality using react-beautiful-dnd to allow users to reorder exercises within a workout.
+8. **Form Handling**: I created and managed forms for creating and editing workouts, including input validation and error handling.
 
-9. **Form Handling**: I created and managed forms for creating and editing workouts, including input validation and error handling.
+9. **Conditional Rendering**: The application uses conditional rendering to display different UI elements based on the application state.
 
-10. **Conditional Rendering**: The application uses conditional rendering to display different UI elements based on the application state.
+10. **CSS and Styling**: I used Tailwind CSS for styling, learning how to create responsive and visually appealing layouts with utility classes.
 
-11. **CSS and Styling**: I used Tailwind CSS for styling, learning how to create responsive and visually appealing layouts with utility classes.
+11. **Error Handling**: I implemented error handling for API requests and user interactions, displaying user-friendly error messages.
 
-12. **Error Handling**: I implemented error handling for API requests and user interactions, displaying user-friendly error messages.
+12. **Performance Optimization**: I used techniques like debouncing to optimize API calls and improve user experience.
 
-13. **Performance Optimization**: I used techniques like debouncing to optimize API calls and improve user experience.
-
-14. **Git Version Control**: Throughout the project, I practiced using Git for version control and managing feature implementations.
+13. **Git Version Control**: Throughout the project, I practiced using Git for version control and managing feature implementations.
 
 ## Features
 * Search for exercises using an external API
 * Filter exercises by body part, equipment, or target muscle
 * Create custom workouts by adding exercises
 * Edit existing workouts (add/remove exercises, change sets/reps)
-* Reorder exercises within a workout using drag-and-drop
 * View a list of saved workouts
 * Delete workouts
 * Persist workout data using local storage
@@ -47,7 +44,6 @@ Through the development of this project, I gained hands-on experience with sever
 ## Technologies Used
 * React
 * React Router
-* react-beautiful-dnd
 * Tailwind CSS
 * ExerciseDB API (or similar exercise database API)
 * JavaScript (ES6+)
