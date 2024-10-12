@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { searchExercises } from '../api/exerciseDb';
 
 function CreateWorkout() {
@@ -47,14 +46,6 @@ function CreateWorkout() {
 
   const removeExercise = (index) => {
     setSelectedExercises(selectedExercises.filter((_, i) => i !== index));
-  };
-
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-    const items = Array.from(selectedExercises);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setSelectedExercises(items);
   };
 
   const saveWorkout = () => {
@@ -119,69 +110,49 @@ function CreateWorkout() {
       {selectedExercises.length > 0 && (
         <div>
           <h3 className="text-2xl font-semibold mb-4">Selected Exercises:</h3>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="exercises">
-              {(provided) => (
-                <div 
-                  {...provided.droppableProps} 
-                  ref={provided.innerRef}
-                  className="bg-white rounded-lg shadow-md overflow-hidden mb-6"
-                >
-                  {selectedExercises.map((exercise, index) => (
-                    <Draggable key={exercise.id} draggableId={exercise.id.toString()} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="border-b last:border-b-0 p-4"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
-                              <img 
-                                src={exercise.gifUrl} 
-                                alt={exercise.name} 
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            <div className="flex-grow">
-                              <h4 className="font-semibold text-sm">{exercise.name}</h4>
-                              <div className="flex items-center space-x-2 mt-1">
-                                <input
-                                  type="number"
-                                  value={exercise.sets}
-                                  onChange={(e) => updateExercise(index, 'sets', parseInt(e.target.value))}
-                                  className="p-1 border rounded w-12 text-center text-sm"
-                                  min="1"
-                                />
-                                <span className="text-xs">sets</span>
-                                <span className="text-xs">x</span>
-                                <input
-                                  type="number"
-                                  value={exercise.reps}
-                                  onChange={(e) => updateExercise(index, 'reps', parseInt(e.target.value))}
-                                  className="p-1 border rounded w-12 text-center text-sm"
-                                  min="1"
-                                />
-                                <span className="text-xs">reps</span>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => removeExercise(index)}
-                              className="text-red-500 hover:text-red-600"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
+          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            {selectedExercises.map((exercise, index) => (
+              <div key={exercise.id} className="border-b last:border-b-0 p-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                    <img 
+                      src={exercise.gifUrl} 
+                      alt={exercise.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-grow">
+                    <h4 className="font-semibold text-sm">{exercise.name}</h4>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <input
+                        type="number"
+                        value={exercise.sets}
+                        onChange={(e) => updateExercise(index, 'sets', parseInt(e.target.value))}
+                        className="p-1 border rounded w-12 text-center text-sm"
+                        min="1"
+                      />
+                      <span className="text-xs">sets</span>
+                      <span className="text-xs">x</span>
+                      <input
+                        type="number"
+                        value={exercise.reps}
+                        onChange={(e) => updateExercise(index, 'reps', parseInt(e.target.value))}
+                        className="p-1 border rounded w-12 text-center text-sm"
+                        min="1"
+                      />
+                      <span className="text-xs">reps</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => removeExercise(index)}
+                    className="text-red-500 hover:text-red-600"
+                  >
+                    Remove
+                  </button>
                 </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
